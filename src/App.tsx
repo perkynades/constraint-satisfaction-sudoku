@@ -1,19 +1,37 @@
-import React, { ReactElement } from 'react'
+import { Button, Upload } from 'antd'
+import { UploadOutlined } from '@ant-design/icons'
+import React, { ReactElement, useState } from 'react'
 import './App.css'
 
 function App(): ReactElement {
-    const loadFile = (e: any) => {
-        let file = e.target.files[0]
-        let reader = new FileReader()
+    const [sudokuGrid, setSudokuGrid] = useState<any[][]>([])
 
+    const [parsed, setParsed] = useState<string | ArrayBuffer | undefined | null>()
+    const [parsedArray, setParsedArray] = useState<string[]>([])
+
+    const displaySudoku = (event: any) => {
+        const reader = new FileReader()
+        const file = event.target.files[0]
         reader.onload = (e) => {
-            console.log(e.target?.result)
+            setParsed(e.target?.result)
         }
-
         reader.readAsText(file)
     }
 
-    return <div className="App"></div>
+    const parseFileString = () => {
+        if (typeof parsed == 'string') {
+            let array = parsed.split('')
+            setParsedArray(array)
+        }
+    }
+
+    return (
+        <div className="App">
+            <input type="file" onChange={displaySudoku}></input>
+            <button onClick={parseFileString}>Start solving</button>
+            {console.log(parsedArray)}
+        </div>
+    )
 }
 
 export default App
