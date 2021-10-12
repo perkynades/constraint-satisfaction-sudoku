@@ -1,13 +1,10 @@
-import { Button, Upload } from 'antd'
-import { UploadOutlined } from '@ant-design/icons'
 import React, { ReactElement, useState } from 'react'
 import './App.css'
 
 function App(): ReactElement {
-    const [sudokuGrid, setSudokuGrid] = useState<any[][]>([])
+    const [sudokuGrid, setSudokuGrid] = useState<number[][]>([])
 
     const [parsed, setParsed] = useState<string | ArrayBuffer | undefined | null>()
-    const [parsedArray, setParsedArray] = useState<string[]>([])
 
     const displaySudoku = (event: any) => {
         const reader = new FileReader()
@@ -19,17 +16,25 @@ function App(): ReactElement {
     }
 
     const parseFileString = () => {
+        let array: number[] = []
         if (typeof parsed == 'string') {
-            let array = parsed.split('')
-            setParsedArray(array)
+            array = parsed
+                .split('')
+                .filter((item) => item !== '\n')
+                .map(Number)
         }
+
+        let newArray: number[][] = []
+        while (array.length) {
+            newArray.push(array.splice(0, 9))
+        }
+        setSudokuGrid(newArray)
     }
 
     return (
         <div className="App">
-            <input type="file" onChange={displaySudoku}></input>
-            <button onClick={parseFileString}>Start solving</button>
-            {console.log(parsedArray)}
+            <input type="file" className="file-input" onChange={displaySudoku}></input>
+            <button onClick={parseFileString}>Create sudoku grid</button>
         </div>
     )
 }
