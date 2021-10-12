@@ -1,5 +1,6 @@
 import React, { ReactElement, useState } from 'react'
 import './App.css'
+import SudokuGrid from './SudokuGrid'
 
 function App(): ReactElement {
     const [sudokuGrid, setSudokuGrid] = useState<number[][]>([])
@@ -35,6 +36,7 @@ function App(): ReactElement {
         <div className="App">
             <input type="file" className="file-input" onChange={displaySudoku}></input>
             <button onClick={parseFileString}>Create sudoku grid</button>
+            <SudokuGrid sudokuGrid={sudokuGrid} />
         </div>
     )
 }
