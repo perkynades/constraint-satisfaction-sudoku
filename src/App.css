@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 
+body {
+    background-color: #eceff4;
+}
+
 .App {
     display: flex;
     flex-direction: column;
