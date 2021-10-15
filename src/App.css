@@ -7,7 +7,24 @@
     font-family: 'Roboto', sans-serif;
 }
 
-.file-input {
-    display: flex;
-    flex-direction: row;
+input[type='file'] {
+    display: none;
+}
+
+.file-upload {
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+    margin-bottom: 0.5rem;
+    background-color: #5e81ac;
+    color: white;
+}
+
+button {
+    border: 1px solid rgb(0, 0, 0);
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
 }

@@ -39,7 +39,11 @@ function App(): ReactElement {
 
     return (
         <div className="App">
-            <input type="file" className="file-input" onChange={displaySudoku}></input>
+            <label className="file-upload">
+                <input type="file" onChange={displaySudoku}></input>
+                Upload file
+            </label>
+
             <button onClick={parseFileString}>Create sudoku grid</button>
             <SudokuGrid sudokuGrid={sudokuGrid} />
             <button onClick={solveSudoku}>Start solving</button>
