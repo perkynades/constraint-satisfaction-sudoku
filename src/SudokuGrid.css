@@ -1,7 +1,5 @@
-.entry {
+.element {
     text-align: center;
-    border-style: solid;
-    border-width: 1px;
     width: 60px;
     height: 60px;
     font-size: 24px;
@@ -9,4 +7,33 @@
 
 .grid {
     border-spacing: 0;
+}
+
+.entry:nth-of-type(1) > .element {
+    border-top: 1px solid black;
+}
+
+.entry:nth-of-type(9) > .element {
+    border-bottom: 1px solid black;
+}
+
+.element:nth-of-type(1) {
+    border-left: 1px solid black;
+}
+
+.element:nth-of-type(9) {
+    border-right: 1px solid black;
+}
+
+.entry:nth-child(3n) > .element {
+    border-bottom: 1px solid black;
+}
+
+.element:nth-child(3n) {
+    border-right: 1px solid black;
+}
+
+.element {
+    border-right: 1px dashed black;
+    border-bottom: 1px dashed black;
 }
