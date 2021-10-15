@@ -32,11 +32,17 @@ function App(): ReactElement {
         setSudokuGrid(newArray)
     }
 
+    const solveSudoku = () => {
+        if (sudokuGrid.length !== 0) {
+        }
+    }
+
     return (
         <div className="App">
             <input type="file" className="file-input" onChange={displaySudoku}></input>
             <button onClick={parseFileString}>Create sudoku grid</button>
             <SudokuGrid sudokuGrid={sudokuGrid} />
+            <button onClick={solveSudoku}>Start solving</button>
         </div>
     )
 }
