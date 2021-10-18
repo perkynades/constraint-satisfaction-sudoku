@@ -4,8 +4,7 @@ import SudokuGrid from './SudokuGrid'
 import { sudokuSolver } from './sudokuSolver'
 
 function App(): ReactElement {
-    let sudokuGrid: number[][] = []
-    const [grid, setGrid] = useState<number[][]>([])
+    const [sudokuGrid, setSudokuGrid] = useState<number[][]>([])
 
     const [parsed, setParsed] = useState<string | ArrayBuffer | undefined | null>()
 
@@ -31,13 +30,13 @@ function App(): ReactElement {
         while (array.length) {
             newArray.push(array.splice(0, 9))
         }
-        sudokuGrid = newArray
+        setSudokuGrid(newArray)
     }
 
     const solve = () => {
-        sudokuSolver(sudokuGrid)
-        console.log(sudokuGrid)
-        setGrid(sudokuGrid)
+        let copy = [...sudokuGrid]
+        sudokuSolver(copy)
+        setSudokuGrid(copy)
     }
 
     return (
@@ -48,7 +47,7 @@ function App(): ReactElement {
             </label>
 
             <button onClick={parseFileString}>Create sudoku grid</button>
-            <SudokuGrid sudokuGrid={grid} />
+            <SudokuGrid sudokuGrid={sudokuGrid} />
             <button onClick={solve}>Start solving</button>
         </div>
     )
