@@ -46,8 +46,8 @@ function App(): ReactElement {
             }
         }
 
-        let x0 = Math.trunc(x / 3) * 3
-        let y0 = Math.trunc(y / 3) * 3
+        let x0 = (x / 3) * 3
+        let y0 = (y / 3) * 3
 
         for (let i = 0; i < 3; i++) {
             for (let j = 0; j < 3; j++) {
@@ -60,6 +60,42 @@ function App(): ReactElement {
         return isPossible
     }
 
+    const solveSudoku = () => {
+        for (let y = 0; y <= 8; y++) {
+            for (let x = 0; x <= 8; x++) {
+                if (sudokuGrid[y][x] === 0) {
+                    for (let n = 1; n <= 9; n++) {
+                        if (possible(y, x, n)) {
+                            const copy = [...sudokuGrid]
+                            copy[y][x] = n
+                            setSudokuGrid(copy)
+
+                            solveSudoku()
+
+                            const newCopy = [...sudokuGrid]
+                            newCopy[y][n] = 0
+                            setSudokuGrid(newCopy)
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    const exists = (value: number): boolean => {
+        let isExists = false
+
+        sudokuGrid.forEach((row) => {
+            for (let i = 0; i < row.length; i++) {
+                if (row[i] === value) {
+                    isExists = true
+                }
+            }
+        })
+
+        return isExists
+    }
+
     return (
         <div className="App">
             <label className="file-upload">
@@ -69,7 +105,7 @@ function App(): ReactElement {
 
             <button onClick={parseFileString}>Create sudoku grid</button>
             <SudokuGrid sudokuGrid={sudokuGrid} />
-            <button>Start solving</button>
+            <button onClick={solveSudoku}>Start solving</button>
         </div>
     )
 }
