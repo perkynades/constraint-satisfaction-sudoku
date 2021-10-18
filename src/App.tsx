@@ -32,9 +32,32 @@ function App(): ReactElement {
         setSudokuGrid(newArray)
     }
 
-    const solveSudoku = () => {
-        if (sudokuGrid.length !== 0) {
+    const possible = (y: number, x: number, n: number): boolean => {
+        let isPossible: boolean = true
+
+        for (let i = 0; i < 9; i++) {
+            if (sudokuGrid[y][i] === n) {
+                isPossible = false
+            }
         }
+        for (let i = 0; i < 9; i++) {
+            if (sudokuGrid[i][x] === n) {
+                isPossible = false
+            }
+        }
+
+        let x0 = Math.trunc(x / 3) * 3
+        let y0 = Math.trunc(y / 3) * 3
+
+        for (let i = 0; i < 3; i++) {
+            for (let j = 0; j < 3; j++) {
+                if (sudokuGrid[y0 + i][x0 + j] === n) {
+                    isPossible = false
+                }
+            }
+        }
+
+        return isPossible
     }
 
     return (
@@ -46,7 +69,7 @@ function App(): ReactElement {
 
             <button onClick={parseFileString}>Create sudoku grid</button>
             <SudokuGrid sudokuGrid={sudokuGrid} />
-            <button onClick={solveSudoku}>Start solving</button>
+            <button>Start solving</button>
         </div>
     )
 }
