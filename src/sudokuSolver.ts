@@ -9,7 +9,21 @@ function isValid(board: number[][], row: number, col: number, k: number) {
     return true
 }
 
+export let sudokuSolverCounter: number = 0;
+
+export function setSudokuSolverCounter(value: number) {
+    sudokuSolverCounter = value
+}
+
+export let sudokuSolverReturnFalseCounter: number = 0
+
+export function setSudokuSolverReturnFalseCounter(value: number) {
+    sudokuSolverReturnFalseCounter = value
+}
+
 export function sudokuSolver(data: number[][]): boolean {
+    sudokuSolverCounter++
+
     for (let i = 0; i < 9; i++) {
         for (let j = 0; j < 9; j++) {
             if (data[i][j] === 0) {
@@ -23,6 +37,7 @@ export function sudokuSolver(data: number[][]): boolean {
                         }
                     }
                 }
+                sudokuSolverReturnFalseCounter++
                 return false
             }
         }
