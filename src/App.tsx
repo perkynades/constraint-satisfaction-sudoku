@@ -64,7 +64,7 @@ function App(): ReactElement {
             <button onClick={parseFileString}>Create sudoku grid</button>
             <SudokuGrid sudokuGrid={sudokuGrid} />
             <p>Backtracker function called {backtrackerCounter} times</p>
-            <p>Backtracker function returned failure {bakcktrackFailureCounter} times</p>
+            <p>Backtracker function returned false {bakcktrackFailureCounter} times</p>
             <button onClick={solve}>Start solving</button>
         </div>
     )
