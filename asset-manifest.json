@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/constraint-satisfaction-sudoku/static/css/main.409b8b70.chunk.css",
+    "main.js": "/constraint-satisfaction-sudoku/static/js/main.e1bc002f.chunk.js",
+    "main.js.map": "/constraint-satisfaction-sudoku/static/js/main.e1bc002f.chunk.js.map",
+    "runtime-main.js": "/constraint-satisfaction-sudoku/static/js/runtime-main.5e4e5e6b.js",
+    "runtime-main.js.map": "/constraint-satisfaction-sudoku/static/js/runtime-main.5e4e5e6b.js.map",
+    "static/js/2.224aba5d.chunk.js": "/constraint-satisfaction-sudoku/static/js/2.224aba5d.chunk.js",
+    "static/js/2.224aba5d.chunk.js.map": "/constraint-satisfaction-sudoku/static/js/2.224aba5d.chunk.js.map",
+    "static/js/3.ad7ff5eb.chunk.js": "/constraint-satisfaction-sudoku/static/js/3.ad7ff5eb.chunk.js",
+    "static/js/3.ad7ff5eb.chunk.js.map": "/constraint-satisfaction-sudoku/static/js/3.ad7ff5eb.chunk.js.map",
+    "index.html": "/constraint-satisfaction-sudoku/index.html",
+    "static/css/main.409b8b70.chunk.css.map": "/constraint-satisfaction-sudoku/static/css/main.409b8b70.chunk.css.map",
+    "static/js/2.224aba5d.chunk.js.LICENSE.txt": "/constraint-satisfaction-sudoku/static/js/2.224aba5d.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.5e4e5e6b.js",
+    "static/js/2.224aba5d.chunk.js",
+    "static/css/main.409b8b70.chunk.css",
+    "static/js/main.e1bc002f.chunk.js"
+  ]
+}
