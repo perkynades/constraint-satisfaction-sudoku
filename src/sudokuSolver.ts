@@ -1,46 +1,59 @@
-function isValid(board: number[][], row: number, col: number, k: number) {
+/**
+ * A function that determines if a digit can be placed in a sudoku
+ * grid cell.
+ */
+function isValid(grid: number[][], row: number, col: number, digit: number) {
     for (let i = 0; i < 9; i++) {
         const m = 3 * Math.floor(row / 3) + Math.floor(i / 3)
         const n = 3 * Math.floor(col / 3) + (i % 3)
-        if (board[row][i] === k || board[i][col] === k || board[m][n] === k) {
+        if (grid[row][i] === digit || grid[i][col] === digit || grid[m][n] === digit) {
             return false
         }
     }
     return true
 }
 
-export let sudokuSolverCounter: number = 0;
-
-export function setSudokuSolverCounter(value: number) {
-    sudokuSolverCounter = value
-}
-
-export let sudokuSolverReturnFalseCounter: number = 0
-
-export function setSudokuSolverReturnFalseCounter(value: number) {
-    sudokuSolverReturnFalseCounter = value
-}
-
-export function sudokuSolver(data: number[][]): boolean {
-    sudokuSolverCounter++
+/**
+ * A backtracker function that is used to solve a game of sudoku.
+ * For every call of the backtracker function, the sudoku grid will be 
+ * checked to see if it is solved or not. If it is not solved the
+ * backtracker function will be called recursivly to try solve to sudoku
+ * grid iterativly.
+ * 
+ * @param grid The sudoku grid to solve
+ * @returns if the grid is solved or not
+ */
+export function backtracker(grid: number[][]): boolean {
+    backtrackerCounter++
 
     for (let i = 0; i < 9; i++) {
         for (let j = 0; j < 9; j++) {
-            if (data[i][j] === 0) {
+            if (grid[i][j] === 0) {
                 for (let k = 1; k <= 9; k++) {
-                    if (isValid(data, i, j, k)) {
-                        data[i][j] = k
-                        if (sudokuSolver(data)) {
+                    if (isValid(grid, i, j, k)) {
+                        grid[i][j] = k
+                        if (backtracker(grid)) {
                             return true
                         } else {
-                            data[i][j] = 0
+                            grid[i][j] = 0
                         }
                     }
                 }
-                sudokuSolverReturnFalseCounter++
+                backtrackerReturnFalseCounter++
                 return false
             }
         }
     }
     return true
+}
+
+
+export let backtrackerCounter: number = 0;
+export function setBacktrackerCounter(value: number) {
+    backtrackerCounter = value
+}
+
+export let backtrackerReturnFalseCounter: number = 0
+export function setBacktrackerReturnFalseCounter(value: number) {
+    backtrackerReturnFalseCounter = value
 }

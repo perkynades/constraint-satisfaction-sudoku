@@ -2,18 +2,18 @@ import React, { ReactElement, useState } from 'react'
 import './App.css'
 import SudokuGrid from './SudokuGrid'
 import {
-    setSudokuSolverCounter,
-    setSudokuSolverReturnFalseCounter,
-    sudokuSolver,
-    sudokuSolverCounter,
-    sudokuSolverReturnFalseCounter,
+    setBacktrackerCounter,
+    setBacktrackerReturnFalseCounter,
+    backtracker,
+    backtrackerCounter,
+    backtrackerReturnFalseCounter,
 } from './sudokuSolver'
 import { CheckOutlined } from '@ant-design/icons'
 
 function App(): ReactElement {
     const [sudokuGrid, setSudokuGrid] = useState<number[][]>([])
 
-    const [backtrackerCounter, setBacktrackerCounter] = useState<number>(0)
+    const [backtrackersCounter, setBacktrackersCounter] = useState<number>(0)
     const [bakcktrackFailureCounter, setBacktrackFailureCounter] = useState<number>(0)
 
     const [parsed, setParsed] = useState<string | ArrayBuffer | undefined | null>()
@@ -48,14 +48,14 @@ function App(): ReactElement {
 
     const solve = () => {
         let copy = [...sudokuGrid]
-        sudokuSolver(copy)
+        backtracker(copy)
         setSudokuGrid(copy)
 
-        setBacktrackerCounter(sudokuSolverCounter)
-        setBacktrackFailureCounter(sudokuSolverReturnFalseCounter)
+        setBacktrackersCounter(backtrackerCounter)
+        setBacktrackFailureCounter(backtrackerReturnFalseCounter)
 
-        setSudokuSolverCounter(0)
-        setSudokuSolverReturnFalseCounter(0)
+        setBacktrackerCounter(0)
+        setBacktrackerReturnFalseCounter(0)
     }
 
     return (
@@ -69,7 +69,7 @@ function App(): ReactElement {
             </div>
             <button onClick={parseFileString}>Create sudoku grid</button>
             <SudokuGrid sudokuGrid={sudokuGrid} />
-            <p>Backtracker function called {backtrackerCounter} times</p>
+            <p>Backtracker function called {backtrackersCounter} times</p>
             <p>Backtracker function returned false {bakcktrackFailureCounter} times</p>
             <button onClick={solve}>Start solving</button>
         </div>
