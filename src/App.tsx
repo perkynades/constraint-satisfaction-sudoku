@@ -8,6 +8,7 @@ import {
     sudokuSolverCounter,
     sudokuSolverReturnFalseCounter,
 } from './sudokuSolver'
+import { CheckOutlined } from '@ant-design/icons'
 
 function App(): ReactElement {
     const [sudokuGrid, setSudokuGrid] = useState<number[][]>([])
@@ -17,11 +18,14 @@ function App(): ReactElement {
 
     const [parsed, setParsed] = useState<string | ArrayBuffer | undefined | null>()
 
+    const [fileUploaded, setFileUploaded] = useState<boolean>(false)
+
     const displaySudoku = (event: any) => {
         const reader = new FileReader()
         const file = event.target.files[0]
         reader.onload = (e) => {
             setParsed(e.target?.result)
+            setFileUploaded(true)
         }
         reader.readAsText(file)
     }
@@ -53,14 +57,16 @@ function App(): ReactElement {
         setSudokuSolverCounter(0)
         setSudokuSolverReturnFalseCounter(0)
     }
-    // TODO Add logic to show when file is loaded
+
     return (
         <div className="App">
-            <label className="file-upload">
-                <input type="file" onChange={displaySudoku}></input>
-                Upload file
-            </label>
-
+            <div className="file-upload-container">
+                <label className="file-upload">
+                    <input type="file" onChange={displaySudoku}></input>
+                    Upload file
+                </label>
+                {fileUploaded && <CheckOutlined className="file-upload-icon" />}
+            </div>
             <button onClick={parseFileString}>Create sudoku grid</button>
             <SudokuGrid sudokuGrid={sudokuGrid} />
             <p>Backtracker function called {backtrackerCounter} times</p>
