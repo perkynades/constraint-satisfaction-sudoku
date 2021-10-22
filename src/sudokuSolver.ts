@@ -26,14 +26,20 @@ function isValid(grid: number[][], row: number, col: number, digit: number) {
 export function backtracker(grid: number[][]): boolean {
     backtrackerCounter++
 
+    // First two for loops are for iteration of every cell in the grid
     for (let i = 0; i < 9; i++) {
         for (let j = 0; j < 9; j++) {
             if (grid[i][j] === 0) {
+                // This for loop is for every digit that can be placed (1-9)
                 for (let k = 1; k <= 9; k++) {
+                    // Check if a digit is valid to be placed 
                     if (isValid(grid, i, j, k)) {
+                        // Place the valid digit
                         grid[i][j] = k
+                        // If grid solved, return true
                         if (backtracker(grid)) {
                             return true
+                            // If grid not solved, set current cell to 0 and perform backtracking
                         } else {
                             grid[i][j] = 0
                         }
